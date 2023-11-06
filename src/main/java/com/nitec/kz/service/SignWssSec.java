@@ -13,6 +13,7 @@ import org.apache.xml.security.signature.XMLSignature;
 import org.apache.xml.security.transforms.Transforms;
 import org.apache.xml.security.utils.Constants;
 import org.apache.xml.security.utils.XMLUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -43,8 +44,9 @@ import java.util.UUID;
 
 @Service
 public class SignWssSec {
-    private static final String KEYSTORE_PASSWORD = "Qwerty12";
-    private static final String KEYSTORE_KEY = "C:\\Users\\Thanh\\Downloads\\New folder (3)\\shep-service-ws-sample\\shep-ws-security-service\\src\\main\\resources\\keys\\GOSTKNCA_9b4f6827a2736acff3de3948392286d61e13a91c.p12";
+    @Value("${password}")
+    private String KEYSTORE_PASSWORD;
+    private static final String KEYSTORE_KEY = "key.p12";
     private static final String SIMPLE_XML_SOAP = "<?xml version='1.0' encoding='UTF-8'?>\n" +
             "<S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\">\n" +
             "\t<S:Body>\n" +

@@ -1,11 +1,9 @@
-FROM eclipse-temurin:17-jdk-alpine
+FROM openjdk:8-jdk-alpine
 VOLUME /tmp
-ARG JAR_FILE
-ARG FILE_PATH
-COPY ${JAR_FILE} /app/app.jar
+COPY /target/kz-0.0.1-SNAPSHOT.jar /app/app.jar
 # Copy the file specified by the build argument into the Docker image
-COPY $FILE_PATH /app/yourfile
+COPY /src/main/resources/keys/key.p12 /app/key.p12
 
 # Set the working directory
 WORKDIR /app
-ENTRYPOINT ["java","-jar","/app.jar"]
+ENTRYPOINT ["java","-jar","app.jar"]
